@@ -1,12 +1,19 @@
-class Soundex
-{
+#include "gmock/gmock.h"
+#include "Soundex.h"
 
+using testing::Eq;
+
+class SoundexEncoding : public testing::Test
+{
+public:
+	Soundex soundex;
 };
 
-#include "gmock/gmock.h"
-
-TEST(SoundexEncoding, RetainSoleLetterOfOneLetterWord)
+TEST_F(SoundexEncoding, RetainSoleLetterOfOneLetterWord)
 {
-	Soundex soundex;
+	ASSERT_THAT(soundex.encode("A"), Eq("A000"));
 }
-
+TEST_F(SoundexEncoding, PadsWithZerosToEnsureThreeDigits)
+{
+	ASSERT_THAT(soundex.encode("I"), Eq("I000"));
+}
