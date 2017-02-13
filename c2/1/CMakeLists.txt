@@ -3,7 +3,7 @@ project(1)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp SoundexTest.cpp SoundexTest.h)
+set(SOURCE_FILES main.cpp SoundexTest.cpp)
 add_executable(1 ${SOURCE_FILES})
 
 include_directories("/usr/include")

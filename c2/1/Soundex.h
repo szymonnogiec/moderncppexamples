@@ -2,6 +2,9 @@
 #define INC_1_SOUNDEX_H
 
 #include <string>
+#include <unordered_map>
+
+static const size_t MaxCodeLength {4};
 
 class Soundex
 {
@@ -12,7 +15,7 @@ public:
 		if (word.length() > 1)
 			encoded += "1";
 
-		return zeroPad (encoded);
+		return zeroPad (head(word) + encodedDigits(word));
 	}
 
 private:
@@ -20,20 +23,36 @@ private:
 	{
 		return word.substr(0, 1);
 	}
+
 	std::string encodedDigits (const std::string& word) const
 	{
 		if (word.length() > 1)
 		{
-			return "1";
+			return encodedDigit(word[0]);
 		}
 		return "";
 	}
-	std::string zeroPad (const std::string& word) const
+
+	std::string encodedDigit (char letter) const
 	{
-		auto zerosNeeded = 4 - word.length();
-		return word + std::string (zerosNeeded, '0');
+		const std::unordered_map<char, std::string> encodings
+				{
+						{'b', "1"}, {'f', "1"}, {'p', "1"}, {'v', "1"},
+						{'c', "2"}, {'g', "2"}, {'j', "2"}, {'k', "2"},
+						{'q', "2"}, {'s', "2"}, {'x', "2"}, {'z', "2"},
+						{'d', "3"}, {'t', "3"},
+						{'l', "4"},
+						{'m', "5"}, {'n', "5"},
+						{'r', "6"},
+				};
+		return encodings.find(letter)->second;
 	}
 
+	std::string zeroPad (const std::string& word) const
+	{
+		auto zerosNeeded = MaxCodeLength - word.length();
+		return word + std::string (zerosNeeded, '0');
+	}
 };
 
 #endif
