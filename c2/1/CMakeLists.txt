@@ -6,9 +6,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES main.cpp SoundexTest.cpp CharUtil.h StringUtil.h)
 add_executable(1 ${SOURCE_FILES})
 
-include_directories("/usr/include")
-link_directories("/usr/lib")
-
 enable_testing()
 
 # gmock needs pthread

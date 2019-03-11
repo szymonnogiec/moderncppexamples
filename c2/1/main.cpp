@@ -1,7 +1,7 @@
 #include <iostream>
 
 //gmock includes
-#include "gmock/gmock.h"
+#include <gmock/gmock.h>
 
 int main(int argc, char** argv)
 {
