@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
-project(c2_1)
+project(c3_1)
 
-set(CMAKE_CXX_STANDARD 11)
-
+set(CMAKE_CXX_STANDARD 17)
 
 macro(package_add_test TESTNAME)
     add_executable(${TESTNAME} ${ARGN})
@@ -11,7 +10,7 @@ macro(package_add_test TESTNAME)
     set_target_properties(${TESTNAME} PROPERTIES FOLDER tests)
 endmacro()
 
-package_add_test(c2_1
+package_add_test(c3_1
         main.cpp
-        SoundexTest.cpp
+        RetweetCollecionTest.cpp
         )
