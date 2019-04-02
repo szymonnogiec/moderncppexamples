@@ -3,19 +3,28 @@
 class RetweetCollection
 {
 public:
-    RetweetCollection() : size_(0) {}
+    RetweetCollection() :
+        empty_(true) {}
+
     bool isEmpty() const
     {
-        return 0 == size();
+        return empty_;
     }
+    void add(const Tweet &tweet)
+    {
+        empty_ = false;
+    }
+
+    void remove(const Tweet &tweet)
+    {
+        empty_ = true;
+    }
+
     size_t size() const
     {
         return isEmpty() ? 0 : 1;
     }
-    void add(const Tweet &tweet) {
-        size_ = 1;
-    }
 
 private:
-    size_t size_;
+    bool empty_;
 };

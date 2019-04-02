@@ -26,8 +26,18 @@ TEST_F(ARetweetCollection, IsNoLongerEmptyAfterTweetAdded)
     ASSERT_FALSE(collection.isEmpty());
 }
 
+MATCHER_P(HasSize, expected, "")
+{
+    return arg.size() == expected &&
+        arg.isEmpty() == (0 == expected);
+}
+
 TEST_F(ARetweetCollection, DecreasesSizeAfterRemovingTweet)
 {
     collection.add(Tweet());
-
+    collection.remove(Tweet());
+    ASSERT_THAT(collection, HasSize(0u));
 }
+
+
+
